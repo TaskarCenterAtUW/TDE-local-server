@@ -102,3 +102,26 @@ dist
 
 # TernJS port file
 .tern-port
+
+# System Files
+.DS_Store
+Thumbs.db
+
+
+.terraform
+terraform-output.json
+*-plan.out
+*.tfstate
+
+# GH Actions Nektos ignore
+.secrets
+
+
+# compiled output
+/dist
+/libs/dist
+/tmp
+/out-tsc
+tsconfig.nx-tmp
+.nx-results
+/build
