@@ -12,11 +12,14 @@ class LogController {
     }
 
      logInfo = async (request:Request,response:Response) => {
+        console.log('Received log --> ');
         console.log(request.body);
+        // console.log(request.params);
+        // console.log(request.query);
         let diagLog = this.logDirectory+'diag.txt';
         let date = new Date();
         console.log(date.toISOString());
-        fs.appendFileSync(diagLog,date.toISOString()+"\r\n");
+        fs.appendFileSync(diagLog,date.toISOString()+": ");
         fs.appendFileSync(diagLog,JSON.stringify(request.body)+"\r\n");
         
         response.status(200).send('OK');
