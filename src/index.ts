@@ -40,5 +40,5 @@ app.use(new LogController().router);
 app.use(new HealthController().router);
 
 app.listen(port,()=>{
-    console.log("App started in port "+port);
+    console.log("File storage service & logger service started on port "+port);
 });
