@@ -22,7 +22,9 @@ class FilesController {
 
     getFile = async (request: Request, response: Response) => {
         console.log("Download file "+request.params.file);
-        response.download(this.rootDir+request.params.file,function(err){
+        const fileDowloadPath = path.join(this.rootDir,request.params.file);
+
+        response.download(fileDowloadPath,function(err){
             if(err){
                 response.statusCode = 404;
                 response.send('Cant find the file');
@@ -32,7 +34,10 @@ class FilesController {
 
     listFiles = async (request:Request, response: Response) => {
 
-        const directoryPath = this.rootDir+request.params.path;
+        // const directoryPath = this.rootDir+request.params.path;
+        const directoryPath = path.join(this.rootDir,request.params.path);
+        console.log("Getting file list from "+ directoryPath );
+
         var filesList:FileEntity[] = this.listFilesRecursively(directoryPath) ;//[];
         
         response.status(200).send(filesList);
@@ -45,15 +50,21 @@ class FilesController {
             response.status(400).send('No file sent');
         }
         let uploadedFile = request.files!.uploadFile as UploadedFile;
-        const finalPath = this.rootDir+request.params.path+'/'+uploadedFile.name;
-        const directoryPath = this.rootDir+request.params.path;
+        // const finalPath = this.rootDir+request.params.path+'/'+uploadedFile.name;
+        const finalPath = path.join(this.rootDir, request.params.path, uploadedFile.name);
+        // const directoryPath = this.rootDir+request.params.path;
+        const directoryPath = path.join(this.rootDir,request.params.path);
         if(!fs.existsSync(directoryPath)){
             // Create the directory recursively even if its not there.
+            console.log(" creating directories.."+directoryPath)
             fs.mkdirSync(directoryPath,{recursive:true});
+        }
+        else {
+          console.log(" Directory exists: "+ directoryPath)
         }
         // fs.exists()
         uploadedFile.mv(finalPath, function(err){
-            console.log('Error while uploading');
+            console.log('Error while uploading to'+finalPath);
             console.log(err);
         });
         response.status(200).send(request.params.path);
