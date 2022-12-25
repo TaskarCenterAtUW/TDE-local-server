@@ -45,5 +45,6 @@ fi
 
 #I dont like that we have to use 8100 in the following line
 echo "running docker for file storage service and logger service..."
-docker run -d -p $LOCAL_HOST_PORT:8100 -v $LOCAL_DEV_STORAGE_DIR:/usr/storagedir $docker_image_tag
+docker run -d -p $LOCAL_HOST_PORT:8100 -v $LOCAL_DEV_STORAGE_DIR:/usr/storagedir -v $LOCAL_DEV_LOG_DIR:/usr/logdir $docker_image_tag
 echo "File Storage Service up.. files will be stored at $LOCAL_DEV_STORAGE_DIR ..."
+echo "Log Service up.. logs will be stored at $LOCAL_DEV_LOG_DIR/diag.txt file ..."
