@@ -5,7 +5,7 @@ COPY package.json ./
 #COPY .env ./
 COPY tsconfig.json ./
 COPY src ./src
-COPY .env ./.env
+COPY docker_env.env ./.env
 RUN npm install
 # RUN npm start
 
