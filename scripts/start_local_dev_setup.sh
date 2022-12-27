@@ -22,7 +22,7 @@ then
     echo " $docker_image_tag already in the system. No need to build..."
 else
     echo "building docker image...."
-    docker build -t $docker_image_tag .
+    docker build -t $docker_image_tag ..
 fi
 
 # check if local_dev_env.sh exists
