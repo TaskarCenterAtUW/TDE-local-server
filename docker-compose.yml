@@ -1,0 +1,8 @@
+services:
+  file_log_service:
+    image: local-dev:0.1
+    ports: 
+      - "8100:8100"
+    volumes:
+      - $PWD/temp:/usr/storagedir
+      - $PWD/temp:/usr/logdir
