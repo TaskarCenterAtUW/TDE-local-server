@@ -64,10 +64,17 @@ class FilesController {
         }
         // fs.exists()
         uploadedFile.mv(finalPath, function(err){
+            if (err) {
             console.log('Error while uploading to'+finalPath);
             console.log(err);
+            return response.status(500).send(err);
+            }
+            else {
+              console.log("File successfully uploaded to: "+finalPath)
+              response.status(200).send(request.params.path);
+            }
         });
-        response.status(200).send(request.params.path);
+        
 
     }
 

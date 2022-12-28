@@ -32,7 +32,9 @@ then
     source local_dev_env.sh
 else
     echo "Please add a local_dev_env.sh file. You can use local_dev_env_example.sh provided as an example"
-    return 1
+    echo "*** Caution: No local_dev_env.sh file found. copying contents from local_dev_env_example.sh and using them..."
+    cp local_dev_env_example.sh local_dev_env.sh
+    # return 1
 fi
 # echo "Checking if env variable \$LOCAL_DEV_STORAGE_DIR is set..."
 # if [ -z $LOCAL_DEV_STORAGE_DIR ]
@@ -45,6 +47,15 @@ fi
 
 #I dont like that we have to use 8100 in the following line
 echo "running docker for file storage service and logger service..."
-docker run -d -p $LOCAL_HOST_PORT:8100 -v $LOCAL_DEV_STORAGE_DIR:/usr/storagedir -v $LOCAL_DEV_LOG_DIR:/usr/logdir $docker_image_tag
+# docker run -d -p $LOCAL_HOST_PORT:8100 -v $LOCAL_DEV_STORAGE_DIR:/usr/storagedir -v $LOCAL_DEV_LOG_DIR:/usr/logdir $docker_image_tag
+docker compose --env-file ./local_dev_env.sh up -d
 echo "File Storage Service up.. files will be stored at $LOCAL_DEV_STORAGE_DIR ..."
 echo "Log Service up.. logs will be stored at $LOCAL_DEV_LOG_DIR/diag.txt file ..."
+echo "Showing the environment variables to use in the microservice..."
+echo "You can copy and paste the following into .env in your microservice"
+echo " 
+PROVIDER=local
+QUEUECONNECTION=
+STORAGECONNECTION=http://localhost:$LOCAL_HOST_PORT
+LOGGERQUEUE=http://localhost:$LOCAL_HOST_PORT
+"

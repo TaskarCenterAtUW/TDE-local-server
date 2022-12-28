@@ -2,7 +2,7 @@ services:
   file_log_service:
     image: local-dev:0.1
     ports: 
-      - "8100:8100"
+      - "$LOCAL_HOST_PORT:8100"
     volumes:
-      - $PWD/temp:/usr/storagedir
-      - $PWD/temp:/usr/logdir
+      - $LOCAL_DEV_STORAGE_DIR:/usr/storagedir
+      - $LOCAL_DEV_LOG_DIR:/usr/logdir
