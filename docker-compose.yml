@@ -6,3 +6,16 @@ services:
     volumes:
       - $LOCAL_DEV_STORAGE_DIR:/usr/storagedir
       - $LOCAL_DEV_LOG_DIR:/usr/logdir
+  
+  rabbitmq:
+    image: rabbitmq:3.10-alpine
+    command: rabbitmq-server
+    expose:
+      - 5672
+      - 15672
+    healthcheck:
+      # test: [ "CMD", "nc", "-z", "localhost", "5672" ]
+      test: [ "CMD", "rabbitmqctl", "status"]
+      interval: 5s
+      timeout: 15s
+      retries: 1

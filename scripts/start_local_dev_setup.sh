@@ -55,7 +55,7 @@ echo "Showing the environment variables to use in the microservice..."
 echo "You can copy and paste the following into .env in your microservice"
 echo " 
 PROVIDER=local
-QUEUECONNECTION=
+QUEUECONNECTION=amqp://guest:guest@rabbitmq:5672/
 STORAGECONNECTION=http://localhost:$LOCAL_HOST_PORT
 LOGGERQUEUE=http://localhost:$LOCAL_HOST_PORT
 "
