@@ -20,7 +20,7 @@ then
 elif [[ "$1" == "down" ]]
 then 
     echo "***** Stopping local development environment ****"
-    docker compose down
+    source stop_local_dev_setup.sh
 else
     echo "unknown command..."
     usage

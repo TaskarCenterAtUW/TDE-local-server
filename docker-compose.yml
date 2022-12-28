@@ -10,9 +10,9 @@ services:
   rabbitmq:
     image: rabbitmq:3.10-alpine
     command: rabbitmq-server
-    expose:
-      - 5672
-      - 15672
+    ports:
+      - 5672:5672
+      - 15672:15672
     healthcheck:
       # test: [ "CMD", "nc", "-z", "localhost", "5672" ]
       test: [ "CMD", "rabbitmqctl", "status"]
