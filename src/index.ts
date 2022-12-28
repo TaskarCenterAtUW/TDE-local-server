@@ -5,6 +5,7 @@ import bodyParser from "body-parser";
 import FilesController from "./files_controller";
 import fileUpload from "express-fileupload";
 import LogController from "./log_controller";
+import HealthController from './health-controller';
 
 dotenv.config()
 
@@ -29,13 +30,15 @@ console.log(err);
 // }
 // sampleFunc();
 
-const port = parseInt(process.env.port as string) || 8080;
+const port = parseInt(process.env.PORT as string) || 8080;
 // Create an app for express
 const app = express();
 app.use(bodyParser.json());
 app.use(fileUpload());
 app.use(new FilesController().router);
 app.use(new LogController().router);
+app.use(new HealthController().router);
+
 app.listen(port,()=>{
-    console.log("App started in port "+port);
+    console.log("File storage service & logger service started on port "+port);
 });

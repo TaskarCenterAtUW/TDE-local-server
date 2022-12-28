@@ -1,3 +1,7 @@
+# local files..
+local_dev_env.sh
+local_dev_dir
+temp
 # Logs
 logs
 *.log
