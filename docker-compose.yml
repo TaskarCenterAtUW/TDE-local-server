@@ -8,7 +8,7 @@ services:
       - $LOCAL_DEV_LOG_DIR:/usr/logdir
   
   rabbitmq:
-    image: rabbitmq:3.10-alpine
+    image: rabbitmq:management
     command: rabbitmq-server
     ports:
       - 5672:5672

@@ -38,8 +38,8 @@ Log Service up.. logs will be stored at /home/suresh/code/tdei/TDEI-local-server
 Showing the environment variables to use in the microservice...
 You can copy and paste the following into .env in your microservice
  
-PROVIDER=local
-QUEUECONNECTION=amqp://guest:guest@rabbitmq:5672/
+PROVIDER=Local
+QUEUECONNECTION=amqp://guest:guest@localhost:15672/
 STORAGECONNECTION=http://localhost:8100
 LOGGERQUEUE=http://localhost:8100
 ```

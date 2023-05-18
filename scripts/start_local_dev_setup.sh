@@ -54,8 +54,8 @@ echo "Log Service up.. logs will be stored at $LOCAL_DEV_LOG_DIR/diag.txt file .
 echo "Showing the environment variables to use in the microservice..."
 echo "You can copy and paste the following into .env in your microservice"
 echo " 
-PROVIDER=local
-QUEUECONNECTION=amqp://guest:guest@rabbitmq:5672/
+PROVIDER=Local
+QUEUECONNECTION=amqp://guest:guest@localhost:15672/
 STORAGECONNECTION=http://localhost:$LOCAL_HOST_PORT
 LOGGERQUEUE=http://localhost:$LOCAL_HOST_PORT
 "
